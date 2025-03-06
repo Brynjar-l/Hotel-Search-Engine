@@ -1,6 +1,6 @@
 package is.hi.hbv401g.team1h;
 
-//test
+//testing somehting
 
 import is.hi.hbv401g.team1h.utils.JdbiManager;
 import org.jdbi.v3.core.Jdbi;
