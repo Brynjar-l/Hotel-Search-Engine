@@ -1,4 +1,4 @@
-package is.hi.hbv401g.team1h.db;
+package is.hi.hbv401g.team1h.utils;
 
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
