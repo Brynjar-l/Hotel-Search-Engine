@@ -1,8 +1,13 @@
 package is.hi.hbv401g.team1h.service;
 
+import is.hi.hbv401g.team1h.dao.AmenityDao;
+import is.hi.hbv401g.team1h.dao.BookingDao;
+import is.hi.hbv401g.team1h.dao.HotelDao;
+import is.hi.hbv401g.team1h.dao.RoomDao;
 import is.hi.hbv401g.team1h.model.Amenity;
 import is.hi.hbv401g.team1h.model.Hotel;
 import is.hi.hbv401g.team1h.utils.QueryObject;
+import org.jdbi.v3.core.Jdbi;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -10,9 +15,22 @@ import java.util.*;
 public class SearchService {
     private QueryObject currentQuery;
 
+    private Jdbi jdbi;
+    private HotelDao hotelDao;
+    private AmenityDao amenityDao;
+    private BookingDao bookingDao;
+    private RoomDao roomDao;
 
-    public SearchService() {
+
+    public SearchService(Jdbi jdbi) {
         newQuery();
+
+        this.jdbi = jdbi;
+
+        hotelDao = jdbi.onDemand(HotelDao.class);
+        amenityDao = jdbi.onDemand(AmenityDao.class);
+        bookingDao = jdbi.onDemand(BookingDao.class);
+        roomDao = jdbi.onDemand(RoomDao.class);
     }
 
 
@@ -34,12 +52,21 @@ public class SearchService {
 
     public void setPriceRange(int lowerBound, int upperBound) {
 
-    }
-    public void setPriceLowerBound(int lowerBound) {
+        if (lowerBound > upperBound) throw new IllegalArgumentException("lower bound must be greater than upper bound");
 
+        setPriceLowerBound(lowerBound);
+        setPriceUpperBound(upperBound);
+    }
+
+    public void setPriceLowerBound(int lowerBound) {
+        if (lowerBound < 0) throw new IllegalArgumentException("lower bound cannot be negative");
+
+        currentQuery.setPriceLowerBound(lowerBound);
     }
     public void setPriceUpperBound(int upperBound) {
+        if (upperBound < 0) throw new IllegalArgumentException("upper bound cannot be negative");
 
+        currentQuery.setPriceUpperBound(upperBound);
     }
 
 
@@ -48,10 +75,19 @@ public class SearchService {
 
     }
     public void setDateFrom(LocalDate fromDate) {
+        LocalDate today = LocalDate.now();
 
+        if (fromDate.isBefore(today)) throw new IllegalArgumentException("fromDate cannot be before today");
+
+        currentQuery.setFromDate(fromDate);
     }
-    public void setDateTo(LocalDate toDate) {
 
+    public void setDateTo(LocalDate toDate) {
+        LocalDate today = LocalDate.now();
+
+        if (toDate.isBefore(today)) throw new IllegalArgumentException("toDate cannot be before today");
+
+        currentQuery.setToDate(toDate);
     }
 
     private void errorCheck() {

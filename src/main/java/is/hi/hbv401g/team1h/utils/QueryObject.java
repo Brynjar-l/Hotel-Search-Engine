@@ -4,10 +4,7 @@ import is.hi.hbv401g.team1h.model.Amenity;
 import is.hi.hbv401g.team1h.model.Hotel;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class QueryObject {
 
@@ -55,8 +52,8 @@ public class QueryObject {
         this.fromDate = fromDate;
         this.toDate = toDate;
     }
-    public LocalDate getFromDate() {
-        return fromDate;
+    public Optional<LocalDate> getFromDate() {
+        return Optional.ofNullable(fromDate);
     }
     public LocalDate getToDate() {
         return toDate;
@@ -68,10 +65,6 @@ public class QueryObject {
         this.priceLowerBound = priceLowerBound;
     }
     public void setPriceUpperBound(int priceUpperBound) {
-        this.priceUpperBound = priceUpperBound;
-    }
-    public void setPriceRange(int priceLowerBound, int priceUpperBound) {
-        this.priceLowerBound = priceLowerBound;
         this.priceUpperBound = priceUpperBound;
     }
     public Integer getPriceLowerBound() {
