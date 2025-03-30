@@ -5,6 +5,7 @@ import is.hi.hbv401g.team1h.utils.JdbiManager;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class HotelServiceTest {
@@ -13,18 +14,24 @@ class HotelServiceTest {
     static void setup() {
         Jdbi jdbi = Jdbi.create("jdbc:sqlite::memory:");
         jdbi.installPlugin(new SqlObjectPlugin());
-
+        HotelService hotelService = new HotelService(jdbi);
         JdbiManager.populate(jdbi);
         // -> add rooms to roomsTable
         // -> add bookings to bookingsTable
 
     }
 
+    @Nested
+    class getById {
 
-    @Test
-    void getHotelById() {
+        @Test
+        void getHotelName_True() { }
+
+        @Test
 
     }
+
+
 
     @Test
     void getAll() {
