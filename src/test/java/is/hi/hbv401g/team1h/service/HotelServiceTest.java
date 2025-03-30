@@ -20,8 +20,9 @@ class HotelServiceTest {
 
     }
 
+
     @Test
-    void getById() {
+    void getHotelById() {
 
     }
 
