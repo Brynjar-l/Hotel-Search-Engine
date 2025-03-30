@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 
-//public class SearchService {
+// public class SearchService {
 //    private QueryObject currentQuery;
 //
 //    private Jdbi jdbi;
