@@ -9,7 +9,7 @@ import java.util.List;
 public class HotelService {
 
     /* ID is unique, will only return at most a single Hotel */
-    public static Hotel getHotelById(int id) { return null; }
+    public static Hotel getById(int id) { return null; }
 
     /* Return a List of all Hotels that Match Criteria; StarRating, ListOfAmenities, etc */
     public static List<Hotel> getAll() { return null; }
