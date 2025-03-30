@@ -1,32 +1,68 @@
 package is.hi.hbv401g.team1h.service;
 
+import is.hi.hbv401g.team1h.dao.HotelDao;
 import is.hi.hbv401g.team1h.model.Amenity;
 import is.hi.hbv401g.team1h.model.Hotel;
 import is.hi.hbv401g.team1h.model.Room;
 import org.jdbi.v3.core.Jdbi;
 
+import java.sql.SQLDataException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.MissingResourceException;
+
+import org.jdbi.v3.core.Jdbi;
+
+import java.sql.SQLDataException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HotelService {
+
     private final Jdbi jdbi;
+    private final HotelDao hd;
+
     public HotelService(Jdbi jdbi) {
         this.jdbi = jdbi;
+        this.hd = jdbi.onDemand(HotelDao.class);
     }
 
-    /* ID is unique, will only return at most a single Hotel */
-    public Hotel getById(int id) {
-        return null;
+    public Hotel getById(int id) throws SQLDataException {
+        Hotel hotel = hd.getById(id);
+        if (hotel == null) {
+            throw new SQLDataException("Hotel with ID " + id + " does not exist");
+        }
+        return hotel;
     }
 
-    /* Return a List of all Hotels that Match Criteria; StarRating, ListOfAmenities, etc */
-    public List<Hotel> getAll() { return null; }
-    public List<Hotel> getByStarRating(double starRating) { return null; }
-    public List<Hotel> getByAmenities(List<Amenity> listOfAmenities) { return null; }
-    public List<Hotel> getByLocation(String city) { return null; }
+    public List<Hotel> getAll() {
+        return hd.getAll();
+    }
 
-    /* Get Associations of a Hotel */
-    public List<Room> getRoomsOfHotel(Hotel hotel) { return null; }
-    public List<Amenity> getAmenitiesOfHotel(Hotel hotel) { return null; }
+    public List<Hotel> getByStarRating(double starRating) {
+        return hd.getByStarRating(starRating);
+    }
+
+    public List<Hotel> getByAmenities(List<Integer> listOfAmenities) {
+        return hd.getHotelsMatchingAllAmenities(
+                listOfAmenities,
+                listOfAmenities.size()
+        );
+    }
+
+    public List<Hotel> getByLocation(String city) {
+        return hd.getByLocation(city);
+    }
+
+    public List<Room> getRoomsOfHotel(Hotel hotel) {
+        return hd.getRoomsForHotel(hotel.getId());
+    }
+
+    public List<Amenity> getAmenitiesOfHotel(Hotel hotel) {
+        return hd.getAmenitiesForHotel(hotel.getId());
+    }
+
+
 
 
     /* Do Last */
