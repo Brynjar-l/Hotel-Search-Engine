@@ -1,4 +1,4 @@
 package is.hi.hbv401g.team1h.service;
 
-public class AdminService {
+public class MainService {
 }

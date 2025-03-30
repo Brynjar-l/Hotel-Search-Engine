@@ -12,7 +12,6 @@ import org.jdbi.v3.core.Jdbi;
 import java.time.LocalDate;
 import java.util.*;
 
-// is this coming through?
 
 public class SearchService {
     private QueryObject currentQuery;
