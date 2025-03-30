@@ -17,9 +17,7 @@ public class Hotel {
     private List<Amenity> amenitiesList;
 
 
-    /**
-     * Return object, never manually instantiated
-     */
+
     public Hotel(
             @ColumnName("hotel_id") int hotelId,
             @ColumnName("hotel_name") String name,
@@ -34,8 +32,5 @@ public class Hotel {
         this.city = city;
         this.starRating = starRating;
         this.description = description;
-
-
-        // todo, fill roomsList and amenitiesList in Service
     }
 }
