@@ -7,7 +7,7 @@ import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-class MainServiceTest {
+class HotelServiceTest {
 
     @BeforeAll
     static void setup() {
@@ -20,15 +20,41 @@ class MainServiceTest {
 
     }
 
-    @Test
-    void getAllHotels() {
-    }
-
-    @Test
-    void createNewHotel() {
-    }
 
     @Test
     void getHotelById() {
     }
+
+    @Test
+    void getAll() {
+    }
+
+    @Test
+    void getByStarRating() {
+    }
+
+    @Test
+    void getByAmenities() {
+    }
+
+    @Test
+    void getByLocation() {
+    }
+
+
+    /* Seinna */
+    @Test
+    void getRoomsOfHotel() {}
+    @Test
+    void getAmenitiesOfHotel() {}
+
+    /* Sleppa */
+    @Test
+    void getHotelQueryBuilder() {}
+    @Test
+    void createNewHotel() {}
+    @Test
+    void deleteHotel() {}
+    @Test
+    void updateHotel() {}
 }
