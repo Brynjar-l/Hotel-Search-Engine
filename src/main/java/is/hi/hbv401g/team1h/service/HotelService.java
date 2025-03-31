@@ -19,12 +19,10 @@ import java.util.List;
 
 public class HotelService {
 
-    private final Jdbi jdbi;
     private final HotelDao hd;
 
-    public HotelService(Jdbi jdbi) {
-        this.jdbi = jdbi;
-        this.hd = jdbi.onDemand(HotelDao.class);
+    public HotelService(HotelDao hotelDao) {
+        this.hd = hotelDao;
     }
 
     public Hotel getById(int id) throws SQLDataException {
